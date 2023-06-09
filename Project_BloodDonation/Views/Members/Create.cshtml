@@ -1,0 +1,237 @@
+﻿@model Project_BloodDonation.Models.Member
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+
+        <h4 class="cen">Enter Member Information</h4>
+   
+
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <h2>Basic Information</h2>
+                    <hr />
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Address" class="control-label"></label>
+                            <input asp-for="Address" class="form-control"/>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Contact" class="control-label"></label>
+                            <input asp-for="Contact" class="form-control"/>
+                            <span asp-validation-for="Contact" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="BloodgroupId" class="control-label"></label>
+                            <select asp-for="BloodgroupId" class="form-control" asp-items="ViewBag.BloodgroupId"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2>Location</h2>
+                    <hr />
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="CountryId" class="control-label"></label>
+                            <select onchange="loadDivision(this)" asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryID">
+                                <option value="0">Select Country</option>
+                            </select>
+                          
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DistrictId" class="control-label"></label>
+                            <select onchange="loadThana(this)" asp-for="DistrictId" class="form-control" asp-items="ViewBag.DistrictId">
+                                <option value="0">Select District</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="AreaId" class="control-label"></label>
+                            <select asp-for="AreaId" class="form-control" asp-items="ViewBag.AreaId"></select>
+                        </div>                                           
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="DivisionId" class="control-label"></label>
+                            <select onchange="loadDistrict(this)" asp-for="DivisionId" class="form-control" asp-items="ViewBag.DivisionId">
+                                <option value="0">Select Division</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ThanaId" class="control-label"></label>
+                            <select onchange="loadArea(this)" asp-for="ThanaId" class="form-control" asp-items="ViewBag.ThanaId">
+                                <option value="0">Select Thana</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+          @*      <div class="row">
+                    <h2>Security</h2>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="UserName" class="control-label"></label>
+                            <input asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label asp-for="Password" class="control-label"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>*@
+          
+               @* <div class="form-group">
+                    <label asp-for="RegistrationDate" class="control-label"></label>
+                    <input asp-for="RegistrationDate" class="form-control" />
+                    <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+                </div>
+                        *@      
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group mt-3">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group mt-3">
+                            <a asp-action="Index" class="btn btn-success">Back to List</a>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+      
+        function loadDivision(cid) {
+            console.log(cid)
+            console.log(cid.value)
+            let countryid = cid.value
+            console.log(countryid)
+            $.ajax({
+                url: "/Members/GetDivisionbyCountry?countryid=" + countryid,
+                method: "GET",
+                
+                success: function (data) {
+                    console.log(data)
+                    var drp = $("#DivisionId");
+                    drp.empty();
+                    drp.append(' <option value="0">Select Division</option>')
+                    $.each(data, function (i, v) {
+                        drp.append("<option value='" + v.id + "'>" + v.name + "</option>")
+                    })
+                }
+            })
+        }
+
+        function loadDistrict(drp) {
+
+            let divId = drp.value
+         
+            $.ajax({
+                url: "/Members/GetDistrictbyDivision?divid=" + divId,
+                method: "GET",
+
+                success: function (data) {
+                    console.log(data)
+                    var drp = $("#DistrictId");
+                    drp.empty();
+                    drp.append(' <option value="0">Select District</option>')
+                    $.each(data, function (i, v) {
+                        drp.append("<option value='" + v.id + "'>" + v.name + "</option>")
+                    })
+                },
+                error: function (er) {
+                    console.log(er.responseText)
+                }
+            })
+        }
+
+
+        function loadThana(drp) {
+
+            let distId = drp.value
+
+            $.ajax({
+                url: "/Members/GetThanabyDistrict?distid=" + distId,
+                method: "GET",
+
+                success: function (data) {
+                    console.log(data)
+                    var drp = $("#ThanaId");
+                    drp.empty();
+                    drp.append(' <option value="0">Select Thana</option>')
+                    $.each(data, function (i, v) {
+                        drp.append("<option value='" + v.id + "'>" + v.name + "</option>")
+                    })
+                },
+                error: function (er) {
+                    console.log(er.responseText)
+                }
+            })
+        }
+
+
+        function loadArea(drp) {
+
+            let thanaId = drp.value
+
+            $.ajax({
+                url: "/Members/GetAreabyThana?thnaid=" + thanaId,
+                method: "GET",
+
+                success: function (data) {
+                    console.log(data)
+                    var drp = $("#AreaId");
+                    drp.empty();
+                    drp.append(' <option value="0">Select Thana</option>')
+                    $.each(data, function (i, v) {
+                        drp.append("<option value='" + v.id + "'>" + v.name + "</option>")
+                    })
+                },
+                error: function (er) {
+                    console.log(er.responseText)
+                }
+            })
+        }
+
+
+    </script>
+}

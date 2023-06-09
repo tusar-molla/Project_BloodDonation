@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Project_BloodDonation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Project_BloodDonation.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg main_menu">
+        <div class="container">
+            <a  class="clr" asp-action="Index" asp-controller="Home">BloodDonation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        
+                    </li>
+
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+
+                     <li class="nav-item">
+                        <a class="nav-link" asp-controller="Members" asp-action="Index">Member</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="BloodDonationDtls" asp-action="Index">Donation Details</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="AppRoles" asp-action="Index">Roles</a>
+                    </li>
+                </ul>            
+           @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container-fluid">
+        <div>
+            <main role="main" class="pb-3">
+                @RenderBody()
+                </main>
+        </div>
+        
+    </div>
+
+    <footer class="footer_part">
+        <div class="footer_head text-center">
+            <a asp-controller="Home" asp-action="Index">BloodDonation</a>
+        </div>
+        <div class="container px-lg-0 for_bor">
+            <div class="row foot_overly">
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="footer_head1">
+                            <p>Twetter Feed</p>
+                        </div>
+                    </div>
+
+                    <div class="row foot_pixel">
+                        <div class="col-lg-1">
+                            <div class="footer_twitter">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-11">
+                            <div class="footer_pera">
+                                <p>
+                                    We want to introduce you to a new ess theme GYMNASIUM persue new press theme. This the new idea for
+                                    theme, hope you will like.
+                                    <span>24 July 2017</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <div class="footer_twitter">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-11">
+                            <div class="footer_pera">
+                                <p>
+                                    We want to introduce you to a new ess theme GYMNASIUM persue new press theme.
+                                    <span>20 July 2017</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+
+                    <div class="col-lg-12">
+                        <div class="footer_head1">
+                            <p>Contact</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <div class="footer_loci">
+                                <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-11">
+                            <div class="footer_location">
+                                <p>1234 Park Street Avenue, NY City <span>America.</span> </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <div class="footer_loci">
+                                <a href="#"><i class="fas fa-phone-alt"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-11">
+                            <div class="footer_number">
+                                <p>+88 017 386 96914, +88 017 419 69683</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-1">
+                            <div class="footer_loci">
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-11">
+                            <div class="footer_mail">
+                                <p>info@admin.com, admin@info.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="foot_get">
+                            <p>get Social</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="footer_lasticon">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer_l text-center">
+            <p> Copyright <i class="far fa-copyright"></i> All rights reserved by <span>Blood Donation.</span></p>
+        </div>
+    </footer>
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
